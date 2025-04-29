@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Stream URL API</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-dark">
+                        <h1 class="text-light mb-0">YouTube Stream URL API</h1>
+                    </div>
+                    <div class="card-body">
+                        <h2>API Usage</h2>
+                        <p class="lead">This API extracts stream URLs from YouTube videos using yt-dlp.</p>
+                        
+                        <div class="alert alert-secondary">
+                            <h4>Endpoint</h4>
+                            <code>GET /:video_id</code>
+                            <p class="mt-2 mb-0">Replace <code>:video_id</code> with a YouTube video ID or full YouTube URL.</p>
+                        </div>
+                        
+                        <h3 class="mt-4">Example Request</h3>
+                        <div class="bg-dark p-3 rounded">
+                            <code>GET /dQw4w9WgXcQ</code>
+                            <p class="text-muted mt-2 mb-0">or</p>
+                            <code>GET /https://www.youtube.com/watch?v=dQw4w9WgXcQ</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
