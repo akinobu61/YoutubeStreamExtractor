@@ -126,12 +126,13 @@ def get_stream(video_id_or_url):
             'video_id': video_id
         }), 404
     
-    # Return the stream URL
+    # Return the stream URL with cache expiration note
     response = {
         'success': True,
         'video_id': video_id,
         'stream_url': stream_url,
-        'video_info': video_info
+        'video_info': video_info,
+        'cache_info': 'Stream URL expires after maximum 12 hours'
     }
     
     return jsonify(response)
