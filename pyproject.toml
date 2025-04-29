@@ -1,8 +1,7 @@
-
 [project]
-name = "youtube-stream-api"
+name = "repl-nix-workspace"
 version = "0.1.0"
-description = "YouTube Stream URL API"
+description = "Add your description here"
 requires-python = ">=3.11"
 dependencies = [
     "email-validator>=2.2.0",
@@ -13,11 +12,3 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "yt-dlp>=2025.3.31",
 ]
-
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["youtube_stream_api"]
