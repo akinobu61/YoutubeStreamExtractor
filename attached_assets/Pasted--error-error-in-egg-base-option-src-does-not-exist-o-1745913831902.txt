@@ -1,0 +1,96 @@
+このエラーの原因と対処法をまとめます。
+
+## エラー内容の解説
+
+```
+error: error in 'egg_base' option: 'src' does not exist or is not a directory
+```
+
+このエラーは、Pythonパッケージのビルド時に `egg_base` オプションで指定された `src` ディレクトリが存在しないために発生しています。多くの場合、`setup.py` や `setup.cfg` で `egg_base = src` のようにディレクトリを指定しているのに、実際にはそのディレクトリが存在しない、または正しい場所にないことが原因です[1][4][5]。
+
+## よくある原因
+
+- プロジェクトディレクトリ内に `src` フォルダが無い
+- `setup.py` や `setup.cfg` の記述ミス
+- 必要なディレクトリやファイルがリポジトリに含まれていない
+
+## 解決方法
+
+### 1. `src` ディレクトリを作成する
+
+エラーが「'src' does not exist or is not a directory」と明示している場合、まずプロジェクトのルートディレクトリに `src` フォルダを作成してください[4]。
+
+```bash
+mkdir src
+```
+
+### 2. `setup.py` / `setup.cfg` の内容を確認
+
+`setup.py` や `setup.cfg` で `egg_base` の指定が不要な場合は、その記述を削除することも検討してください。
+
+- `setup.py` 例：
+
+  ```python
+  # setup.pyの一部
+  setup(
+      # ...
+      # 'egg_base' の指定がある場合は確認
+  )
+  ```
+
+- `setup.cfg` 例：
+
+  ```ini
+  [egg_info]
+  egg_base = src
+  ```
+
+もし `egg_base = src` の指定がある場合、`src` ディレクトリが存在しているか確認してください[4][5]。
+
+### 3. ディレクトリ構成を確認
+
+プロジェクトのディレクトリ構成が正しいか確認してください。例えば、`src/your_package/` のように、`src` 配下にパッケージ本体がある構成が一般的です。
+
+### 4. 仮想環境の利用
+
+パッケージの依存関係やPythonのバージョンが原因の場合もあるため、新しい仮想環境を作成して再度インストールを試すのも有効です[2][3]。
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Windowsの場合は venv\Scripts\activate
+pip install --upgrade pip setuptools wheel
+pip install 
+```
+
+## まとめ
+
+- `src` ディレクトリが存在しない場合は作成
+- `setup.py` や `setup.cfg` の記述を確認し、不要な `egg_base` の指定があれば削除
+- 仮想環境で再度試す
+
+これで多くの場合は解決します。それでも解決しない場合は、`setup.py` や `setup.cfg` の内容、ディレクトリ構成を再度確認し、必要に応じて詳細を共有してください[1][4][5]。
+
+Citations:
+[1] https://stackoverflow.com/questions/50755705/error-error-in-egg-base-option-src-does-not-exist-or-is-not-a-directory
+[2] https://stackoverflow.com/questions/78505431/error-installing-selenium-with-pip-getting-requirements-to-build-wheel-did-not
+[3] https://discuss.python.org/t/getting-requirements-to-build-wheel-did-not-run-successfully-exit-code-1/30365
+[4] https://github.com/pypa/packaging-problems/issues/386
+[5] https://stackoverflow.com/questions/50755705/error-error-in-egg-base-option-src-does-not-exist-or-is-not-a-directory/51676498
+[6] https://zenn.dev/shirochan/articles/40d230a3256692
+[7] https://github.com/google/sentencepiece/issues/971
+[8] https://moriokalab.com/news/81
+[9] https://github.com/enthought/mayavi/issues/1232
+[10] https://stackoverflow.com/questions/79480218/python-package-installation-fails-getting-requirements-to-build-wheel-did-not
+[11] http://wiki.ros.org/noetic/Migration
+[12] https://teratail.com/questions/286390
+[13] https://github.com/pypa/packaging-problems/issues/781
+[14] https://discuss.python.org/t/setup-py-error-unrecognized-arguments-egg-info-egg-base-tmp-pip-pip-egg-info-nx929i7g/14005
+[15] https://qiita.com/haruto_dev/items/8cfb047f40e779fba9a0
+[16] https://discuss.python.org/t/subprocess-exited-wth-error-getting-requirements-to-build-wheel-did-not-run-sucessfully-depreciationwarning/83929
+[17] https://www.cnblogs.com/revercc/p/14311112.html
+[18] https://github.com/robotframework/robotframework/issues/3865
+[19] https://answers.ros.org/question/364060
+[20] https://robotics.stackexchange.com/questions/89673/what-is-the-correct-layout-of-python-code-when-using-symlink-install-in-ros-2
+
+---
+Perplexity の Eliot より: pplx.ai/share
