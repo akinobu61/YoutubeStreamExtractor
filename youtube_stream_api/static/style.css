@@ -1,0 +1,20 @@
+/* Additional custom styles beyond Bootstrap */
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+code {
+    color: var(--bs-info);
+}
+
+.card {
+    border-radius: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-header h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,14 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "repl-nix-workspace"
+name = "youtube-stream-api"
 version = "0.1.0"
-description = "Add your description here"
+description = "API to fetch YouTube stream URLs using yt-dlp"
 requires-python = ">=3.11"
 dependencies = [
-    "email-validator>=2.2.0",
-    "flask-cors>=5.0.1",
     "flask>=3.1.0",
-    "flask-sqlalchemy>=3.1.1",
+    "flask-cors>=5.0.1",
     "gunicorn>=23.0.0",
-    "psycopg2-binary>=2.9.10",
     "yt-dlp>=2025.3.31",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.setuptools]
+packages = ["youtube_stream_api"]
