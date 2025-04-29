@@ -110,46 +110,25 @@ def get_stream(video_id_or_url):
     video_id = extract_video_id(video_id_or_url)
     
     if not video_id:
-        return jsonify({
-            'success': False,
-            'error': 'Invalid YouTube video ID or URL'
-        }), 400
+        return "Invalid YouTube video ID or URL", 400
     
     # Get video information
     stream_url, video_info, error = get_youtube_stream_url(video_id)
     
     if error:
         logger.error(f"Error for video ID {video_id}: {error}")
-        return jsonify({
-            'success': False,
-            'error': error,
-            'video_id': video_id
-        }), 404
+        return error, 404
     
-    # Return the stream URL with cache expiration note
-    response = {
-        'success': True,
-        'video_id': video_id,
-        'stream_url': stream_url,
-        'video_info': video_info,
-        'cache_info': 'Stream URL expires after maximum 12 hours'
-    }
-    
-    return jsonify(response)
+    # Return only the stream URL
+    return stream_url
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return jsonify({
-        'success': False,
-        'error': 'Endpoint not found'
-    }), 404
+    return "Endpoint not found", 404
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    return jsonify({
-        'success': False,
-        'error': 'Internal server error'
-    }), 500
+    return "Internal server error", 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
